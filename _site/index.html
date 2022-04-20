@@ -28,7 +28,7 @@
 
     <section class="main-content">
       
-      <p>This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as <a href="https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html">Heron Unmanned Surface Vehicle (USV)</a>, <a href="http://www.clearpathrobotics.com/assets/guides/noetic/jackal/">Jackal Unmanned Ground Vehicle (UGV)</a>, and <a href="https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html">Husky UGV</a>. We will use the Jackal simulator as a running example.</p>
+      <p>This is a simple PID controller written in Python3 for controlling differential-drive vehicles, such as <a href="https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html">Heron Unmanned Surface Vehicle (USV)</a>, <a href="http://www.clearpathrobotics.com/assets/guides/noetic/jackal/">Jackal Unmanned Ground Vehicle (UGV)</a>, and <a href="https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html">Husky UGV</a> to a desired position/waypoint. We will use the Jackal simulator as a running example.</p>
 
 <table>
   <thead>
@@ -88,7 +88,7 @@ roslaunch jackal_gazebo empty_world.launch
 
 <h1 id="tracking-pid-controller">Tracking PID Controller</h1>
 
-<p>ROS Melodic does not support Python3 natively but our code is written in Python3. To bypass this problem, we can install ROS Noetic in a conda environment following the instructions given by <a href="https://github.com/RoboStack/ros-noetic">RoboStack</a>. If your ROS distribution supports Python3 or you have an existing conda environment, feel free to skip this step. Assuming that you have a ROS noetic conda environment called <code class="language-plaintext highlighter-rouge">robostackenv</code>, clone and build the <code class="language-plaintext highlighter-rouge">diff_drive_tracking_pid</code> package in a <code class="language-plaintext highlighter-rouge">catkin</code> workspace.</p>
+<p>ROS Melodic does not support Python3 natively but our code is written in Python3. To bypass this problem, we can install ROS Noetic in a conda environment following the instructions given by <a href="https://github.com/RoboStack/ros-noetic">RoboStack</a>. If your ROS distribution supports Python3 or you have an existing conda environment, feel free to skip this step. Assuming that you have a ROS noetic conda environment called <code class="language-plaintext highlighter-rouge">robostackenv</code>, clone and build the <code class="language-plaintext highlighter-rouge">tracking_pid</code> package in a <code class="language-plaintext highlighter-rouge">catkin</code> workspace.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal #2</span>
 conda activate robostackenv
@@ -136,9 +136,15 @@ rosrun tracking_pid tracking_pid_node.py
 
 <p>Add a <code class="language-plaintext highlighter-rouge">RobotModel</code>.</p>
 
-<p><img src="./assets/rviz_2.png" alt="rviz_2" />
-<img src="./assets/rviz_3.png" alt="rviz_3" />
-<img src="./assets/rviz_4.png" alt="rviz_4" /></p>
+<p><img src="./assets/rviz_2.png" alt="rviz_2" /></p>
+
+<p>Add marker for visualizing the goal/waypoint.</p>
+
+<p><img src="./assets/rviz_3.png" alt="rviz_3" /></p>
+
+<p>Change the marker topic to <code class="language-plaintext highlighter-rouge">/waypoint_marker</code></p>
+
+<p><img src="./assets/rviz_4.png" alt="rviz_4" /></p>
 
 
       <footer class="site-footer">
