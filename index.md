@@ -70,7 +70,7 @@ Open another terminal, run `rviz` &rarr; select `File` &rarr; `Open Config` &rar
 
 Now we can send a goal using the `2D Nav Goal` tool.
 
-<iframe width="800" height="400" src="/assets/demo.mp4" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe>
+![rviz](./assets/demo.gif)
 
 <a name="rviz"></a>
 # (Optional) Configuration of RViz
