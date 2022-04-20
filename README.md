@@ -2,7 +2,7 @@
 
 
 
-This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as [Heron Unmanned Surface Vehicle (USV)](https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html), [Jackal Unmanned Ground Vehicle (UGV)](http://www.clearpathrobotics.com/assets/guides/noetic/jackal/), and [Husky UGV](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html). A tutorial can be found [here]((https://weizhechen.com/tracking_pid/)).
+This is a simple PID controller written in Python3 for controlling differential-drive vehicles, such as [Heron Unmanned Surface Vehicle (USV)](https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html), [Jackal Unmanned Ground Vehicle (UGV)](http://www.clearpathrobotics.com/assets/guides/noetic/jackal/), and [Husky UGV](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html), to a desired position/waypoint. A tutorial can be found [here]((https://weizhechen.com/tracking_pid/)).
 
 
 Heron USV | Jackal UGV | Husky UGV
