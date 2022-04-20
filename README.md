@@ -34,7 +34,7 @@ We should see the simulated vehicle on an open ground.
 ![gazebo](https://weizhechen.com/tracking_pid/assets/gazebo.png)
 
 
-ROS Melodic does not support Python3 natively but our code is written in Python3. To bypass this problem, we can install ROS Noetic in a conda environment following the instructions given by [RoboStack](https://github.com/RoboStack/ros-noetic). If your ROS distribution supports Python3 or you have an existing conda environment, feel free to skip this step. Assuming that you have a ROS noetic conda environment called `robostackenv`, clone and build the `diff_drive_tracking_pid` package in a `catkin` workspace.
+ROS Melodic does not support Python3 natively but our code is written in Python3. To bypass this problem, we can install ROS Noetic in a conda environment following the instructions given by [RoboStack](https://github.com/RoboStack/ros-noetic). If your ROS distribution supports Python3 or you have an existing conda environment, feel free to skip this step. Assuming that you have a ROS noetic conda environment called `robostackenv`, clone and build the `tracking_pid` package in a `catkin` workspace.
 
 ```bash
 # Terminal #2
