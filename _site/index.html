@@ -33,70 +33,86 @@
 <h1 id="table-of-contents">Table of contents</h1>
 
 <ul>
-  <li><a href="#section">Section</a>
-    <ul>
-      <li><a href="#subsection_1">Subsection 1</a></li>
-      <li><a href="#subsection_2">Subsection 2</a></li>
-    </ul>
-  </li>
+  <li><a href="#jackal">Jackal Simulator</a></li>
+  <li><a href="#pid">Tracking PID Controller</a></li>
+  <li><a href="#rviz">(Optional) Configuration of RViz</a></li>
 </ul>
 
 <hr />
 
-<p><a name="section"></a></p>
+<p><a name="jackal"></a></p>
 
-<h1 id="section">Section</h1>
+<h1 id="jackal-simulation">Jackal Simulation</h1>
 
-<ul>
-  <li>Some</li>
-  <li>elements</li>
-  <li>in</li>
-  <li>a</li>
-  <li>list</li>
-</ul>
+<p>To install Jackal simulator, make sure you have a working ROS installation on your Ubuntu desktop. We use Ubuntu 18.04 which corresponds to ROS <code class="language-plaintext highlighter-rouge">melodic</code>. Change the ROS distribution accordingly based on your OS version, and install the following Jackal simulator packages:</p>
 
-<p><a name="subsection_1"></a></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-melodic-jackal-simulator ros-melodic-jackal-desktop ros-melodic-jackal-navigation
+</code></pre></div></div>
 
-<h2 id="subsection-1">Subsection 1</h2>
+<p>Make sure your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> has the following settings and remember to <code class="language-plaintext highlighter-rouge">source ~/.bashrc</code> after modifying it:</p>
 
-<p>Here is some inline math: \(y = ax + b\). Here is some other math:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
+<span class="nb">export </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span>localhost
+</code></pre></div></div>
 
-\[\sin^2\theta + \cos^2\theta = 1\]
+<p>To launch simulated Jackal in an empty world, run the following command:</p>
 
-<p><a name="subsection_2"></a></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal #1</span>
+roslaunch jackal_gazebo empty_world.launch
+</code></pre></div></div>
 
-<h2 id="subsection-2">Subsection 2</h2>
+<p>We should see the simulated vehicle on an open ground.</p>
 
-<p><strong>Bold</strong> and <em>italics</em>.</p>
+<p><img src="./assets/gazebo.png" alt="gazebo" /></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Arbitrary quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></td>
-      <td>33</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>42</td>
-    </tr>
-  </tbody>
-</table>
+<p><a name="pid"></a></p>
 
-<hr />
+<h1 id="tracking-pid-controller">Tracking PID Controller</h1>
 
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>Some footnote explaining A. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+<p>ROS Melodic does not support Python3 natively but our code is written in Python3. To bypass this problem, we can install ROS Noetic in a conda environment following the instructions given by <a href="https://github.com/RoboStack/ros-noetic">RoboStack</a>. If your ROS distribution supports Python3 or you have an existing conda environment, feel free to skip this step. Assuming that you have a ROS noetic conda environment called <code class="language-plaintext highlighter-rouge">robostackenv</code>, clone and build the <code class="language-plaintext highlighter-rouge">diff_drive_tracking_pid</code> package in a <code class="language-plaintext highlighter-rouge">catkin</code> workspace.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal #2</span>
+conda activate robostackenv
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/robostack_ws/src
+<span class="nb">cd</span> ~/robostack_ws/src
+git clone https://github.com/Weizhe-Chen/diff_drive_tracking_pid.git
+<span class="nb">cd</span> ..
+catkin build
+<span class="nb">.</span> devel/setup.bash  <span class="c"># `.` is equivalent to `source`</span>
+rosrun tracking_pid tracking_pid_node.py
+</code></pre></div></div>
+
+<p>If everything goes well, we shall see the following terminal output, showing the robot’s pose.</p>
+
+<p><img src="./assets/console_state.png" alt="terminal_state" /></p>
+
+<p>Open another terminal, run <code class="language-plaintext highlighter-rouge">rviz</code> → select <code class="language-plaintext highlighter-rouge">File</code> → <code class="language-plaintext highlighter-rouge">Open Config</code> → find <code class="language-plaintext highlighter-rouge">jackal.rviz</code> in <code class="language-plaintext highlighter-rouge">tracking_pid/rviz/</code>.</p>
+
+<p><img src="./assets/rviz.png" alt="rviz" /></p>
+
+<p>Now we can send a goal using the <code class="language-plaintext highlighter-rouge">2D Nav Goal</code> tool.</p>
+
+<iframe width="800" height="400" src="/assets/demo.mp4" frameborder="0" allowfullscreen="allowfullscreen">&nbsp;</iframe>
+
+<p><a name="rviz"></a></p>
+<h1 id="optional-configuration-of-rviz">(Optional) Configuration of RViz</h1>
+
+<p>In case opening <code class="language-plaintext highlighter-rouge">jackal.rviz</code> does not work, we can configure RViz manually via the following steps. Open a new terminal and run <code class="language-plaintext highlighter-rouge">rviz</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rviz
+</code></pre></div></div>
+
+<p><img src="./assets/rviz_0.png" alt="rviz_0" /></p>
+
+<p>Change the <code class="language-plaintext highlighter-rouge">Fixed Frame</code> to <code class="language-plaintext highlighter-rouge">odom</code>.</p>
+
+<p><img src="./assets/rviz_1.png" alt="rviz_1" /></p>
+
+<p>Add a <code class="language-plaintext highlighter-rouge">RobotModel</code>.</p>
+
+<p><img src="./assets/rviz_2.png" alt="rviz_2" />
+<img src="./assets/rviz_3.png" alt="rviz_3" />
+<img src="./assets/rviz_4.png" alt="rviz_4" /></p>
 
 
       <footer class="site-footer">
