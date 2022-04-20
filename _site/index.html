@@ -28,7 +28,26 @@
 
     <section class="main-content">
       
-      <hr />
+      <p>This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as <a href="https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html">Heron Unmanned Surface Vehicle (USV)</a>, <a href="http://www.clearpathrobotics.com/assets/guides/noetic/jackal/">Jackal Unmanned Ground Vehicle (UGV)</a>, and <a href="https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html">Husky UGV</a>. We will use the Jackal simulator as a running example.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Heron USV</th>
+      <th style="text-align: center">Jackal UGV</th>
+      <th style="text-align: center">Husky UGV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="https://www.clearpathrobotics.com/assets/guides/melodic/heron/_images/heron_banner.jpg" width="300" height="100" /></td>
+      <td style="text-align: center"><img src="http://www.clearpathrobotics.com/assets/guides/noetic/jackal/_images/jackal_banner.png" width="300" height="100" /></td>
+      <td style="text-align: center"><img src="https://www.clearpathrobotics.com/assets/guides/kinetic/husky/_images/TJM_5949_00001.jpg" width="300" height="100" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 <h1 id="table-of-contents">Table of contents</h1>
 
@@ -75,7 +94,7 @@ roslaunch jackal_gazebo empty_world.launch
 conda activate robostackenv
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/robostack_ws/src
 <span class="nb">cd</span> ~/robostack_ws/src
-git clone https://github.com/Weizhe-Chen/diff_drive_tracking_pid.git
+git clone https://github.com/Weizhe-Chen/tracking_pid.git
 <span class="nb">cd</span> ..
 catkin build
 <span class="nb">.</span> devel/setup.bash  <span class="c"># `.` is equivalent to `source`</span>
@@ -86,13 +105,20 @@ rosrun tracking_pid tracking_pid_node.py
 
 <p><img src="./assets/console_state.png" alt="terminal_state" /></p>
 
-<p>Open another terminal, run <code class="language-plaintext highlighter-rouge">rviz</code> → select <code class="language-plaintext highlighter-rouge">File</code> → <code class="language-plaintext highlighter-rouge">Open Config</code> → find <code class="language-plaintext highlighter-rouge">jackal.rviz</code> in <code class="language-plaintext highlighter-rouge">tracking_pid/rviz/</code>.</p>
+<p>Open another terminal (terminal #3), run <code class="language-plaintext highlighter-rouge">rviz</code> → select <code class="language-plaintext highlighter-rouge">File</code> → <code class="language-plaintext highlighter-rouge">Open Config</code> → find <code class="language-plaintext highlighter-rouge">jackal.rviz</code> in <code class="language-plaintext highlighter-rouge">tracking_pid/rviz/</code>.</p>
 
 <p><img src="./assets/rviz.png" alt="rviz" /></p>
 
 <p>Now we can send a goal using the <code class="language-plaintext highlighter-rouge">2D Nav Goal</code> tool.</p>
 
 <p><img src="./assets/demo.gif" alt="rviz" /></p>
+
+<p>We can adjust the controller parameters on-the-fly using <code class="language-plaintext highlighter-rouge">rqt_reconfigure</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rosrun rqt_reconfigure rqt_reconfigure
+</code></pre></div></div>
+
+<p><img src="/assets/rqt_reconfigure.png" alt="reconfigure" /></p>
 
 <p><a name="rviz"></a></p>
 <h1 id="optional-configuration-of-rviz">(Optional) Configuration of RViz</h1>
