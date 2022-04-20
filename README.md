@@ -1,6 +1,9 @@
 # Tracking PID Controller for Differential-Drive Vehicles
 
-This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as [Heron Unmanned Surface Vehicle (USV)](https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html), [Jackal Unmanned Ground Vehicle (UGV)](http://www.clearpathrobotics.com/assets/guides/noetic/jackal/), and [Husky UGV](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html).
+
+
+This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as [Heron Unmanned Surface Vehicle (USV)](https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html), [Jackal Unmanned Ground Vehicle (UGV)](http://www.clearpathrobotics.com/assets/guides/noetic/jackal/), and [Husky UGV](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html). A tutorial can be found [here]((https://weizhechen.com/tracking_pid/)).
+
 
 Heron USV | Jackal UGV | Husky UGV
 :-------------------------:|:-------------------------:|:-------------------------:
@@ -55,4 +58,13 @@ Open another terminal (terminal #3), run `rviz` &rarr; select `File` &rarr; `Ope
 
 Now we can send a goal using the `2D Nav Goal` tool.
 
-![rviz](https://weizhechen.com/tracking_pid/assets/demo.gif)
+![demo](https://weizhechen.com/tracking_pid/assets/demo.gif)
+
+We can adjust the controller parameters on-the-fly using rqt_reconfigure:
+
+```bash
+# Terminal #4
+rosrun rqt_reconfigure rqt_reconfigure
+```
+
+![reconfigure](https://weizhechen.com/tracking_pid/assets/rqt_reconfigure.png)
