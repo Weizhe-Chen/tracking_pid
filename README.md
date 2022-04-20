@@ -1,4 +1,4 @@
-# Tracking PID Controller for Differential Drive
+# Tracking PID Controller for Differential-Drive Vehicles
 
 This is a simple PID controller written in Python3 for tracking desired linear and angular velocities of differential-drive vehicles, such as [Heron Unmanned Surface Vehicle (USV)](https://www.clearpathrobotics.com/assets/guides/melodic/heron/index.html), [Jackal Unmanned Ground Vehicle (UGV)](http://www.clearpathrobotics.com/assets/guides/noetic/jackal/), and [Husky UGV](https://www.clearpathrobotics.com/assets/guides/kinetic/husky/index.html).
 
