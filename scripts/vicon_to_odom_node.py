@@ -44,6 +44,7 @@ class ViconToOdom:
         self.odom.pose.pose.orientation.z = rotation[2]
         self.odom.pose.pose.orientation.w = rotation[3]
         self.pub_odom.publish(self.odom)
+        rospy.loginfo(f"x: {translation[0]: .2f} y: {translation[1]: .2f}")
 
 
 if __name__ == "__main__":
