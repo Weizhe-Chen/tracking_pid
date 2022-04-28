@@ -21,7 +21,7 @@ class TrackingPID:
         self.init_waypoint_marker()
         self.odom = np.empty(3)
         self.waypoint = self.odom[:2].copy()
-        self.trim_lin_vel = 0.0
+        self.rotate_lin_vel = 0.2
         self.verbose = True
         self.angular_tolerance = 0.2
         self.robot_radius = 0.2
@@ -88,7 +88,7 @@ class TrackingPID:
     def param_callback(self, config, _):
         self.angular_tolerance = config["angular_tolerance"]
         self.robot_radius = config["robot_radius"]
-        self.trim_lin_vel = config["trim_lin_vel"]
+        self.rotate_lin_vel = config["rotate_lin_vel"]
         self.verbose = config["verbose"]
 
         self.pid_angular.kp = config["angular_kp"]
@@ -180,7 +180,7 @@ class TrackingPID:
             self.verbose,
         )
         if np.abs(angular_error) > self.angular_tolerance:
-            self.twist.linear.x = self.trim_lin_vel
+            self.twist.linear.x = self.rotate_lin_vel
         if dist < self.robot_radius:
             self.need_waypoint.data = True
             self.stop()
@@ -261,6 +261,6 @@ class PID:
 
 if __name__ == "__main__":
     try:
-        TrackingPID(odom_topic="/odometry/filtered")
+        TrackingPID(odom_topic="/odom")
     except rospy.ROSInterruptException:
         pass
