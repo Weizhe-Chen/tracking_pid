@@ -1,7 +1,6 @@
 # A Simple Pose Tracking Controller
 
-
-https://raw.githubusercontent.com/weizhe-chen/tracking_pid/main/.github/images/tracking_demo.mp4
+https://github.com/Weizhe-Chen/tracking_pid/assets/42178983/37f77e71-7b8e-48ed-b574-2a5c8a61321e
 
 ## Get Started
 
